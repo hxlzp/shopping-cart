@@ -1,0 +1,558 @@
+section,aside,details,article,header,nav,main,footer,
+div,p,span,h1,h2,h3,h4,h5,h6,input,button,textarea,
+ul,li,ol,dl,dt,dd,table,tbody,thead,
+strong,i,img{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: Open sans,sans-serif;
+    overflow-x: auto;
+    overflow-y: auto;
+    font-size: 62.5%;
+}
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+/*自定义checked样式*/
+input[type="checkbox"] + label::before {
+    content: "\a0";  /*不换行空格*/
+    display: inline-block;
+    width: .8em;
+    height: .8em;
+    margin-right: .4em;
+    border-radius: .2em;
+    background-color: white;
+    border: 1px solid #CCCCCC;
+    line-height: .8;  /*行高不加单位，子元素将继承数字乘以自身字体尺寸而非父元素行高*/
+}
+input[type="checkbox"]:checked + label::before {
+    content: "\2713";
+}
+input {/*隐藏原来的复选框时，如果使用 display: none; 的话，那样会把它从键盘 tab 键切换焦点的队列中完全删除。
+            于是可采用剪切的方式，让剪切后的尺寸为零，这样就隐藏了原来的多选框。*/
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+input[type="checkbox"] + label {
+    cursor: pointer;
+    font-size: 1em;
+}
+input[type="checkbox"] + label:hover{
+    color: #222;
+}
+.pull-left{/*左浮动*/
+    float: left;
+}
+.pull-right{/*右浮动*/
+    float: right;
+}
+.clear::after{/*清除浮动*/
+    content: '';
+    height: 0;
+    visibility: hidden;
+    display: block;
+    clear: both;
+}
+#wrapper{
+    overflow: hidden;
+    width: 100%;
+    background: white;
+}
+/*header*/
+#header{
+    height: 92px;
+    width:100%;
+    background: url("../img/header-icons.png") white right top no-repeat;
+    border: 1px solid #EEEEEE;
+}
+#header > ul > li > a{
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    color: #444444;
+    line-height: 92px;
+    margin-left: 40px;
+    /*text-transform 属性控制文本的大小写。*/
+    text-transform: uppercase;
+    /*letter-spacing 属性增加或减少字符间的空白（字符间距）*/
+    letter-spacing: 1px;
+}
+#header > ul > li > a:hover{
+    color: black;
+}
+/*aside*/
+#sidebar{
+    width:275px;
+    background: white;
+    border-right: 1px solid #EEEEEE;
+    padding: 13px 0 0 45px;
+}
+#sidebar > h3, /*cart*/
+#sidebar > .categories > h3, /*categories*/
+#sidebar > .color > h3, /*color*/
+#sidebar > .sizes > h3, /*sizes*/
+#sidebar > .price > h3 /*price*/{
+    color: #262626;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing:1px;
+}
+#sidebar > h3{
+    padding: 35px 0 10px 0;
+}
+    /*cart购物车*/
+#sidebar > #cart{
+    padding: 0;
+}
+#sidebar > #cart > .empty{
+    font-style: italic;
+    color: #a0a3ab;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+#sidebar > .checklist{
+    padding: 35px 0 0 0;
+}
+    /*categories类别*/
+#sidebar > .categories > ul > li{
+    margin-top: 14px;
+}
+#sidebar > .categories > ul > li > a, /*categories*/
+#sidebar > .color > ul > li > a > span:last-child, /*color*/
+#sidebar > .sizes > ul > li > a /*sizes*/{
+    color: #666;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+    /*color颜色*/
+#sidebar > .color > ul > li > a,/*color*/
+#sidebar > .sizes > ul > li > a /*sizes*/{
+    float: left;
+    display: inline-block;
+    width: 100px;
+    margin-top: 14px;
+}
+#sidebar > .color > ul > li > a:hover > span:last-child{
+    color: #222222;
+}
+#sidebar > .color > ul > li > a > span:first-child{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    -webkit-transition: all 0.1s linear;
+            transition: all 0.1s linear;
+}
+#sidebar > .color > ul > li:last-child > a > span:first-child{
+    width: 11px;
+    height: 11px;
+    border: 1px solid #CCCCCC;
+}
+#sidebar > .color > ul > li > a:hover > span:first-child{
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+}
+    /*price价格*/
+#sidebar > .price > img{
+    margin: 20px 0;
+}
+    /*cart checked*/
+#checkout{
+    border: 1px solid #5ff7d2;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 9px;
+    position: absolute;
+    top: 137px;
+    left: 181px;
+    color: #5ff7d2;
+    cursor: pointer;
+    display: none;
+}
+/*grid-selector*/
+#grid-selector{
+    position: absolute;
+    left: 315px;
+    height: 10px;
+    width: 1291px;
+    padding: 40px 0 40px 30px;
+    color: #5d5f68;
+    font-size: 14px;
+}
+
+#grid-selector > #grid-menu > ul > li.largeGrid > a,
+#grid-selector > #grid-menu > ul > li.smallGrid > a{
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    overflow: hidden;
+}
+#grid-selector > #grid-menu > ul > li.largeGrid > a{
+    background: url("../img/grid-menu.png") white top right no-repeat;
+}
+#grid-selector > #grid-menu > ul > li.largeGrid > a.active{
+    background: url("../img/grid-menu.png") white bottom right no-repeat;
+}
+#grid-selector > #grid-menu > ul > li.smallGrid > a{
+    background: url("../img/grid-menu.png") white bottom left no-repeat;
+}
+#grid-selector > #grid-menu > ul > li.smallGrid > a.active{
+    background: url("../img/grid-menu.png") white top left no-repeat;
+}
+#grid-selector > #grid-menu > ul{
+    margin-left: 10px;
+}
+#grid-selector > #grid-menu > ul > li {
+    margin-left: 5px;
+}
+/*grid*/
+#grid{
+    width: 1335px;
+    height: 100%;
+    position: absolute;
+    left: 340px;
+    top: 180px;
+    background-color: white;
+}
+#grid > .product{
+    position: relative;
+    width: 305px;
+    height: 470px;
+    margin-right: 23px;
+    float: left;
+    -webkit-perspective: 800px;/*透视图*/
+            perspective: 800px;
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+    -webkit-transition: width .5s ease-in-out;
+        -moz-transition: width .5s ease-in-out;
+         -ms-transition:width .5s ease-in-out;
+          -o-transition: width .5s ease-in-out;
+             transition: width ,5ms ease-in-out;
+}
+    /*make3D*/
+#grid > .product > .make3D{
+    width: 305px;
+    height: 470px;
+    position: absolute;
+    top:10px;
+    left: 10px;
+    overflow: hidden;
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+    -webkit-transition: all .2s ease-out;
+       -moz-transition: all .2s ease-out;
+         -o-transition: all .2s ease-out;
+            transition: all .2s ease-out;
+}
+        /*product-front*/
+#grid > .product > .make3D > .product-front,/*product-front*/
+#grid > .product > .make3D > .product-back{/*product-back*/
+    -webkit-transition: all  .2s ease-out;
+            -moz-transition: all .2s ease-out;
+            -o-transition: all .2s ease-out;
+            transition: all .2s ease-out;
+}
+#grid > .product > .make3D > .product-front > .stats{/*产品详情*/
+    position: absolute;
+    top: 400px;
+    left:0;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background-color: white;
+    -webkit-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out;
+}
+#grid > .product > .make3D > .product-front > .stats >.stats-container{
+    background-color: white;
+}
+#grid > .product > .make3D > .product-front > .stats >.stats-container > .product_name{/*产品名称*/
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 15px;
+    color: #393c45;
+    font-weight: 700;
+}
+#grid > .product > .make3D > .product-front > .stats >.stats-container > .product_price{/*产品价格*/
+    position: absolute;
+    right:30px;
+    top:20px;
+    color: #5ff7d2;
+    font-size: 18px;
+    font-weight: 800;
+}
+#grid > .product > .make3D > .product-front > .stats >.stats-container > p{/*产品介绍*/
+    position: absolute;
+    left: 30px;
+    top:40px;
+    font-size: 14px;
+    color: #CCCCCC;
+}
+#grid > .product > .make3D > .product-front > .stats >.stats-container > .product-options{/*产品参数*/
+    position: relative;
+    background-color: white;
+    top:55px;
+    padding-top: 20px;
+    padding-left: 30px;
+}
+#grid > .product > .make3D > .product-front > .stats >.stats-container > .product-options > .product-options-size > h3,
+#grid > .product > .make3D > .product-front > .stats >.stats-container > .product-options > .product-options-color > h3{
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #333333;
+}
+#grid > .product > .make3D > .product-front > .stats >.stats-container > .product-options > .product-options-size > ul > li,
+#grid > .product > .make3D > .product-front > .stats >.stats-container > .product-options > .product-options-color > ul > li{
+    float: left;
+}
+#grid > .product > .make3D > .product-front > .stats >.stats-container > .product-options > .product-options-size > ul > li > a{
+    display: inline-block;
+    margin-top: 5px;
+    color: #c0c0c0;
+    font-size: 14px;
+    margin-right: 5px;
+}#grid > .product > .make3D > .product-front > .stats >.stats-container > .product-options > .product-options-size > ul > li > a:hover{
+    color: #222222;
+ }
+#grid > .product > .make3D > .product-front > .stats >.stats-container > .product-options > .product-options-color{
+    margin: 15px 0;
+}
+#grid > .product > .make3D > .product-front > .stats >.stats-container > .product-options > .product-options-color > ul > li >a >span{
+    margin: 5px 8px 0 0;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    -webkit-transition: -webkit-transform 0.2s linear;
+            transition: transform 0.2s linear;
+}
+#grid > .product > .make3D > .product-front > .stats >.stats-container > .product-options > .product-options-color > ul > li > a:hover >span{
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+}
+
+#grid > .product > .make3D:hover{/*阴影*/
+    -webkit-box-shadow: 0 0 20px #eee,-0 -0 20px #eee;
+            box-shadow: 0 0 20px #eee,-0 -0 20px #eee;
+}
+#grid > .product > .make3D:hover > .product-front > img{/*图片*/
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
+}
+#grid > .product > .make3D:hover > .product-front > .stats{/*产品信息全部展现*/
+    top: 270px;
+}
+#grid > .product > .make3D:hover > .product-front > .image_overlay{/*覆盖物*/
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;/*设置宽高*/
+    height: 100%;
+    -webkit-transition: background 0.2s linear;
+    transition: background 0.2s linear;
+}
+#grid > .product > .make3D:hover > .product-front > .image_overlay{/*覆盖物*/
+    background-color: rgba(95,247,210,0.5);
+}
+#grid > .product > .make3D:hover > .product-front >.add_to_cart,
+#grid > .product > .make3D:hover > .product-front >.view_gallery{
+    position: absolute;
+    width: 120px;
+    left:50%;
+    border: 2px solid white;
+    color: white;
+    padding: 8px 0;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-left: -60px;
+    cursor: pointer;
+}
+#grid > .product > .make3D:hover > .product-front >.add_to_cart{
+    top:18%;
+}
+#grid > .product > .make3D:hover > .product-front >.view_gallery{
+    top:30%;
+}
+#grid > .product > .make3D:hover > .product-front >.add_to_cart:hover,
+#grid > .product > .make3D:hover > .product-front >.view_gallery:hover{
+    color: #5ff7d2;
+    background-color: white;
+}
+        /*product-back*/
+#grid > .product > .make3D > .product-back{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: inherit;
+    height:inherit;
+    display: none;
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+}
+        /*carousel-close*/
+#grid > .product > .make3D > .product-back > .carousel > .carousel-close{
+    position: absolute;
+    top:10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: none;
+    background: url("../img/delete-item.png") no-repeat left top ;
+    -webkit-transition: all 100ms ease-out;
+            transition: all 100ms ease-out;
+}
+#grid > .product > .make3D > .product-back > .carousel > .carousel-prev,/*carousel-prev*/
+#grid > .product > .make3D > .product-back > .carousel > .carousel-next {/*carousel-next*/
+    position: absolute;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    top:50%;
+    margin-top: -15px;
+    -webkit-transition: all 200ms ease-out;
+            transition: all 200ms ease-out;
+}
+#grid > .product > .make3D > .product-back > .carousel > .carousel-next{
+    right: -30px;
+    background: url("../img/arrows_right.png") no-repeat;
+}
+#grid > .product > .make3D > .product-back > .carousel > .carousel-prev{
+    left: -30px;
+    background: url("../img/arrows_left.png") no-repeat;
+}
+#grid > .product > .make3D:hover > .product-back > .carousel > .carousel-next{
+    right: 10px;
+    background-color: white;
+}
+#grid > .product > .make3D:hover > .product-back > .carousel > .carousel-prev{
+    left: 10px;
+    background-color: white;
+}
+    /*执行动画*/
+#grid > .product > .make3D.flip-10{
+    -webkit-transform: rotateY( -10deg );
+            -moz-transform: rotateY( -10deg );
+            -o-transform: rotateY( -10deg );
+                transform: rotateY( -10deg );
+            transition: all 50ms ease-out;
+}
+#grid > .product > .make3D.flip-90{
+    -webkit-transform: rotateY( -90deg );
+            -moz-transform: rotateY( -90deg );
+            -o-transform: rotateY( -90deg );
+                transform: rotateY( -90deg );
+    -webkit-transition: all 100ms ease-out;
+            transition: all 100ms ease-out;
+}
+#grid > .product > .make3D.flip-190{
+    -webkit-transform: rotateY( 190deg );
+            -moz-transform: rotateY( 190deg );
+            -o-transform: rotateY( 190deg );
+                transform: rotateY( 190deg );
+    -webkit-transition:  100ms ease-out;
+            transition:  100ms ease-out;
+}
+#grid > .product > .make3D.flip-180{
+    -webkit-transform: rotateY( 180deg );
+            -moz-transform: rotateY( 180deg );
+             -o-transform: rotateY( 180deg );
+                transform: rotateY( 180deg );
+    -webkit-transition:  150ms ease-out;
+            transition:  150ms ease-out;
+}
+            /*carousel-container*/
+#grid > .product > .make3D > .product-back > .carousel > .carousel-container{
+    width: 999px;
+    position: absolute;
+    top:0;
+    left: 0;
+    -webkit-transition:  200ms ease-out;
+            transition:  200ms ease-out;
+}
+#grid > .product > .make3D > .product-back > .carousel > .carousel-container > li{
+    float: left;
+}
+
+/*cart*/
+section.floating-cart{
+    position:absolute;
+    top:0;
+    left:0;
+    width:315px;
+    height:480px;
+    background:#fff;
+    z-index:20;
+    overflow:hidden;
+    box-shadow:0 5px 31px -1px rgba(0, 0, 0, 0.15);
+    display:none;
+}
+section.floating-cart.moveToCart{
+    left: 75px !important;
+    top: 55px !important;
+    width: 47px;
+    height: 47px;
+    -webkit-transition: all 800ms ease-in-out;
+    -moz-transition: all 800ms ease-in-out;
+    -ms-transition: all 800ms ease-in-out;
+    -o-transition: all 800ms ease-in-out;
+    transition: all 800ms ease-in-out;
+}
+body.MakeFloatingCart section.floating-cart.moveToCart{
+    left: 90px !important;
+    top: 140px !important;
+    width: 21px;
+    height: 22px;
+    box-shadow:0 5px 31px -1px rgba(0, 0, 0, 0);
+    -webkit-transition: all 200ms ease-out;
+    -moz-transition: all 200ms ease-out;
+    -ms-transition: all 200ms ease-out;
+    -o-transition: all 200ms ease-out;
+    transition: all 200ms ease-out;
+}
+section.cart-icon-top{
+    position:absolute;
+    top: 140px;
+    left: 90px;
+    z-index:1;
+    width:21px;
+    height:3px;
+    background:url("../img/cart.png") #fff 0 -3px no-repeat;
+}
+section.cart-icon-bottom{
+    position:absolute;
+    top: 143px;
+    left: 90px;
+    z-index:1;
+    width:21px;
+    height:19px;
+    background:url("../img/cart.png") #fff 0 -3px no-repeat;
+}
+
+body.MakeFloatingCart section.cart-icon-top{z-index:10;}
+body.MakeFloatingCart section.cart-icon-bottom{z-index:30;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
